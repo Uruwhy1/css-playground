@@ -1,0 +1,179 @@
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+body {
+  background-color: #000;
+  color: #fff;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  font-family: system-ui;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.header h1 {
+  font-size: 4rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.header p {
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.cards-container {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 5fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  gap: 0.25rem;
+
+  width: calc(85px * 6 + 85px * 5);
+
+  transition: grid-template 0.3s ease;
+}
+
+.card {
+  color: #fff;
+  background-color: transparent;
+  border: 1px solid #fff;
+
+  height: 350px;
+  min-width: 85px;
+
+  transition: opacity 0.3s ease;
+
+  position: relative;
+
+  border-radius: 5px;
+  border-color: rgb(86, 14, 154);
+  border-width: 1px;
+
+  display: grid;
+  grid-template-areas:
+    "image"
+    "text"
+    "icon";
+  grid-template-rows: 150px auto 50px;
+
+  overflow: hidden;
+
+  opacity: 0.5;
+
+  .content-text {
+    opacity: 0;
+  }
+}
+
+.card.active {
+  opacity: 1;
+
+  > .content-text {
+    opacity: 1;
+  }
+}
+
+.icon-container {
+  position: absolute;
+  bottom: 0rem;
+
+  left: 0;
+  width: 85px;
+  height: 50px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding-bottom: 1rem;
+  background-color: transparent;
+
+  > svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.card-title {
+  position: absolute;
+  top: 1rem;
+  left: calc(85px / 2);
+
+  text-wrap: nowrap;
+  width: 200px;
+
+  overflow: hidden;
+
+  rotate: 90deg;
+  transform-origin: 0% 50%;
+
+  font-size: 1.1rem;
+  font-weight: 300;
+
+  text-transform: uppercase;
+  font-family: monospace;
+}
+
+.card .content-text {
+  grid-area: text;
+
+  padding: 1rem 0.2rem;
+  width: calc(85px * 4);
+  margin: auto;
+  height: 100%;
+
+  text-wrap: balance;
+
+  font-size: 0.9rem;
+  font-family: monospace;
+
+  display: flex;
+  align-items: end;
+
+  transition: opacity 0.3s ease;
+  transition-delay: 150ms;
+}
+
+.card-image {
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  z-index: -1;
+
+  filter: grayscale(1) brightness(1.5);
+  scale: 1.1;
+  transition-property: filter, scale;
+  transition-duration: 600ms;
+  transition-timing-function: ease;
+
+  mask: radial-gradient(100% 100% at 100% 0, #fff, #0000);
+}
+
+.active .card-image {
+  filter: grayscale(0) brightness(1);
+  scale: 1;
+}
